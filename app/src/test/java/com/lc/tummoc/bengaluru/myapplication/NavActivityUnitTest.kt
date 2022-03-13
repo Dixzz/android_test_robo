@@ -19,7 +19,7 @@ import org.robolectric.annotation.Config
 
 @Config(sdk = [Build.VERSION_CODES.P])
 @RunWith(RobolectricTestRunner::class)
-class ExampleUnitTest {
+class NavActivityUnitTest {
 
     private lateinit var activity: Nav
     private lateinit var scenario: FragmentScenario<Frag1>
@@ -35,7 +35,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun addition_isCorrect() {
+    fun checkFrag1Emit() {
         activity.abc.abc.observe(activity) {
             println("Value $it")
         }

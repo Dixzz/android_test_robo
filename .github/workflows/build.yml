@@ -35,10 +35,10 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build Apk
-        run: ./gradlew testDebugUnitTest
+        #run: ./gradlew testDebugUnitTest
+        run: ./gradlew testDebugUnitTest --tests=NavActivityUnitTest
 
-      - name: Upload download link to Telegram
+      - name: Messaging to Telegram
         run: |
           CH_LOG=$(git log --pretty=oneline --abbrev-commit -1)
-          echo "Changelog " ${CH_LOG}
-          curl -s "https://api.telegram.org/${{ secrets.BOT_TOKEN }}/sendmessage" --data "text=<i>$(TZ="Asia/Kolkata" date)</i>%0A%0A<b>Commit</b>%0A<i>${CH_LOG}</i>%0A%0A<b>Download</b>%0Ahttps://floral-surf-6b75.vishusatyam36.workers.dev/tummoc/${{ env.ARTIFACT_NAME_APK }}&chat_id=${{ secrets.CHAT_ID }}&parse_mode=HTML"
+          curl -s "https://api.telegram.org/${{ secrets.BOT_TOKEN }}/sendmessage" --data "text=<i>$(TZ="Asia/Kolkata" date)</i>%0A%0A<b>Commit</b>%0A<i>${CH_LOG}</i>%0A%0A&chat_id=${{ secrets.CHAT_ID }}&parse_mode=HTML"
